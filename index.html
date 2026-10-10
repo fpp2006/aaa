@@ -3,15 +3,14 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta charset="UTF-8">
-  <title>Comparador de Cardápio em RA</title>
+  <title>Cardápio em Realidade Aumentada</title>
 
-  <!-- Bibliotecas de Realidade Aumentada -->
+  <!-- Bibliotecas de RA -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
     body { margin: 0; overflow: hidden; font-family: sans-serif; }
-    /* Mensagem flutuante na tela */
     #aviso {
       position: fixed;
       top: 15px;
@@ -24,8 +23,8 @@
       font-size: 14px;
       z-index: 9999;
       text-align: center;
-      width: 80%;
-      max-width: 300px;
+      width: 85%;
+      max-width: 320px;
     }
   </style>
 </head>
@@ -33,31 +32,30 @@
 
   <div id="aviso">Aponte a câmera para a logo do McDonald's ou Burger King</div>
 
-  <!-- Cena de RA configurada para reconhecer o targets.mind -->
+  <!-- maxTrack: 2 avisa ao sistema que existem 2 alvos a serem rastreados -->
   <a-scene 
-    mindar-image="imageTargetSrc: ./targets.mind;" 
+    mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 2;" 
     color-space="sRGB" 
     renderer="colorManagement: true, physicallyCorrectLights" 
     vr-mode-ui="enabled: false" 
     device-orientation-permission-ui="enabled: false">
     
     <a-assets>
+      <!-- As duas fotos dos lanches -->
       <img id="foto-bigmac" src="./bigmac.png">
       <img id="foto-stacker" src="./stacker.png">
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- ALVO 0: McDonald's (Primeira imagem adicionada no compilador) -->
+    <!-- ALVO 0 (Primeira imagem inserida no compilador: McDonald's) -->
     <a-entity mindar-image-target="targetIndex: 0">
-      <!-- Card com foto do lanche -->
-      <a-plane src="#foto-bigmac" position="0 0 0.05" height="1" width="1" rotation="0 0 0"></a-plane>
+      <a-plane src="#foto-bigmac" position="0 0 0.05" height="1" width="1"></a-plane>
     </a-entity>
 
-    <!-- ALVO 1: Burger King (Segunda imagem adicionada no compilador) -->
+    <!-- ALVO 1 (Segunda imagem inserida no compilador: Burger King) -->
     <a-entity mindar-image-target="targetIndex: 1">
-      <!-- Card com foto do lanche -->
-      <a-plane src="#foto-stacker" position="0 0 0.05" height="1" width="1" rotation="0 0 0"></a-plane>
+      <a-plane src="#foto-stacker" position="0 0 0.05" height="1" width="1"></a-plane>
     </a-entity>
 
   </a-scene>
